@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+script_dir=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+filter=""
+dry="0"
+
+# If the number of arguments is greater than 0 check
+# if dry is one of the arguments. If it is set it to 1.
+while [[ $# > 0 ]]; do
+    if [[ $1 == "--dry" ]]; then
+        dry="1"
+    else
+        filter="$1"
+    fi
+    shift
+done
+
+# Rather than use if statements in various cases (if is or
+# isn't dry run), just remove all that by running through a
+# few functions.
+log() {
+    if [[ $dry == "1" ]]; then
+        echo "[DRY_RUN]: $@"
+    else
+        echo "$@"
+    fi
+}
+
+execute() {
+    log "execute $@"
+    if [[ $dry == "1" ]]; then
+        return
+    fi
+    "$@"
+}
+
+log "$script_dir -- $filter"
+
+cd $script_dir
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    scripts=$(find ./runs -maxdepth 1 -mindepth 1 -type f -perm +111)
+else
+    scripts=$(find ./runs -maxdepth 1 -mindepth 1 -executable -type f)
+fi
+
+for script in $scripts; do
+    if echo "$script" | grep -qv "$filter"; then
+        log "filtering $script"
+        continue
+    fi
+    execute ./$script
+done

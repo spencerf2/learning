@@ -94,7 +94,7 @@ func main() {
 - Why do constructors usually return *FileProcessor instead of FileProcessor?
 - How is this similar to your work's NewDebugReportGenerator()?
 
-Problem 4: Mirror Your Work Confusion
+## Problem 4: Mirror Your Work Confusion
 
 **Goal**: Recreate the exact pattern that confused you
 ```

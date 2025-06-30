@@ -9,11 +9,16 @@ type FileProcessor struct {
 }
 
 func NewFileProcessor(inputDir, outputDir string, maxFiles int) *FileProcessor {
-	return &FileProcessor{
+	f := &FileProcessor{
 		inputDir: inputDir,
 		outputDir: outputDir,
 		maxFiles: maxFiles,
 	}
+	fmt.Println("FileProcessor pointer address", f)
+	// Note to self: Above didn't print memory address.
+	//               Need to learn more about fmt package.
+	//               Will return to this later.
+	return f
 }
 
 // Note to self: With the above, I know that the return has to have "&" on it. I

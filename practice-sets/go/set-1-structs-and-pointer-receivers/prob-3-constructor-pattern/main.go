@@ -18,6 +18,35 @@ func NewFileProcessor(inputDir, outputDir string, maxFiles int) *FileProcessor {
 	// Note to self: Above didn't print memory address.
 	//               Need to learn more about fmt package.
 	//               Will return to this later.
+
+	// UPDATE:
+	// ============================================================================
+	// EXTENDED EXERCISE: fmt Package Exploration
+	// ============================================================================
+	// TODO: Try these different formatting approaches and observe the differences:
+	// fmt.Println("Method 1:", f)
+	// fmt.Printf("Method 2: %v\n", f)
+	// fmt.Printf("Method 3: %p\n", f)
+	// fmt.Printf("Method 4: %#v\n", f)
+
+	// Questions to answer after experimenting:
+	// 1. What's the difference between %v, %p, and %#v format verbs?
+	// 2. Why might Go choose to format pointers differently in Println vs Printf?
+	// 3. Which method actually shows you the memory address?
+	// 4. When would you use each formatting approach in debugging?
+
+	// BONUS: Try these additional experiments:
+	// TODO: What happens if you print the address of f itself? (&f)
+	// TODO: Compare printing a pointer vs the value it points to (*f)
+	// TODO: Try %T to see the type information
+
+	// fmt.Printf("Address of f variable: %p\n", &f)
+	// fmt.Printf("Value f points to: %v\n", *f)
+	// fmt.Printf("Type of f: %T\n", f)
+	// ============================================================================
+	// END EXTENDED EXERCISE
+	// ============================================================================
+
 	return f
 }
 

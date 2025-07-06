@@ -23,6 +23,11 @@ func main() {
 	// 0 prints here. Because the function updates the value, but that just means
 	// it updates a copy of the actual value, rather than updating the value in
 	// memory, which is what the struct is holding onto (aka "pointing" to).
+	//
+	// Update 2025-07-06: It's more accurate to say that it updates a copy of
+	//                    the entire struct, not just the value field, since
+	//                    it's a copy of the entire struct that's passed
+	//                    into IncrementValue().
 
 	c.IncrementPointer()
 	fmt.Println(c.value) // What prints here? Why?

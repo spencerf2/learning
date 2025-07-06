@@ -15,6 +15,10 @@ func (c *Counter) SetValue(newValue int) {
 }
 
 func CreateCounter(initialValue int) Counter {
+	/*
+		Note 2025-07-06: Could have done this with named fields:
+		return Counter{value: initialValue}
+	*/
 	return Counter{initialValue}
 }
 

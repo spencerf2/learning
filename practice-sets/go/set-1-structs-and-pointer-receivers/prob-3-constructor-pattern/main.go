@@ -28,8 +28,13 @@ func NewFileProcessor(inputDir, outputDir string, maxFiles int) *FileProcessor {
 	// fmt.Println("Method 1:", f) // What I've been doing
 	// fmt.Printf("Method 2: %v\n", f) // Removes new line hence needing \n
 	// fmt.Printf("Method 3: %p\n", f) // Here's actual pointer address
-	// fmt.Printf("Method 4: %#v\n", f) // This one is interesting. Want to look it up later.
-	//                               &main.FileProcessor{inputDir:"input_directory", outputDir:"output_directory", maxFiles:5}
+	// fmt.Printf("Method 4: %#v\n", f) // This one is interesting. Want to look it
+	//                                     up later.
+	//                                     &main.FileProcessor{inputDir:"input_directory", outputDir:"output_directory", maxFiles:5}
+	//
+	// Update 2025-07-06:
+	// %#v is "Go-syntax representation". You can copy and paste it to create the
+	// exact same struct.
 
 	// Questions to answer after experimenting:
 	// 1. What's the difference between %v, %p, and %#v format verbs?
@@ -116,10 +121,33 @@ func (f FileProcessor) ProcessFiles() {
 // Note to self: Believe it's fine not to use a pointer for FileProcessor on
 //               ProcessFiles() because we don't need to do anything with
 //               the struct but access its values.
+//
+// Update 2025-07-06: ^ is exactly correct.
 
 func main() {
 	f := NewFileProcessor("input_directory", "output_directory", 5)
 	f.ProcessFiles()
+
+	// UPDATE 2025-07-06:
+	// ============================================================================
+	// GOING DEEPER: & vs * Understanding
+	// ============================================================================
+	// To solidify understanding of & and *, try this experiment:
+	//
+	val := FileProcessor{inputDir: "test", outputDir: "test", maxFiles: 1}
+	ptr := &val
+	//
+	fmt.Printf("\nval with %%#v: %#v\n", val)
+	fmt.Printf("ptr with %%#v: %#v\n", ptr)
+	//
+	// Questions to answer:
+	// 1. What does val show with %#v? (no & or * in the output)
+	// 2. What does ptr show with %#v? (should show & in the output)
+	// 3. Why does one show & and the other doesn't?
+	// 4. How does this connect to the %T output you saw earlier?
+	// ============================================================================
+	// END GOING DEEPER
+	// ============================================================================
 }
 
 // Note to self: Nice, ran it, it works!
@@ -127,9 +155,16 @@ func main() {
 // Answering the questions:
 // 1. Why do constructors usually return *FileProcessor instead of FileProcessor?
 //   - Because the reason a constructor creates something is usually so that it can
-//     be used elsewhere--updated. It isn't usually created just to be immediately
-//     consumed, though that's certainly possible.
+//     be used elsewhere / updated. It isn't usually created just to be immediately
+//     consumed and discarded, though that's certainly possible.
+//
+//     Update 2025-07-06: Also, passing pointers around is more memory efficient
+//                        than passing copies of structs.
 // 
 // 2. How is this similar to your work's NewDebugReportGenerator()?
-//   - Ooh, good question. Will have to come back to this tomorrow! Need to switch
-//     to starting my work day :)
+//   - NewDebugReportGenerator is a factory constructor, that creates an instance of
+//     DebugReportGenerator which holds onto two fields:
+//     i. One that keeps track of the location where the DebugReport should be written.
+//     ii. One that holds onto the file system abstraction allowing the application
+//         to read, write, list files, or create a folder on either AWS S3 or the
+//         local file system, depending on which env var is set.

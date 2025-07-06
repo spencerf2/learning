@@ -132,19 +132,27 @@ func main() {
 	// ============================================================================
 	// GOING DEEPER: & vs * Understanding
 	// ============================================================================
-	// To solidify understanding of & and *, try this experiment:
-	//
-	val := FileProcessor{inputDir: "test", outputDir: "test", maxFiles: 1}
-	ptr := &val
-	//
-	fmt.Printf("\nval with %%#v: %#v\n", val)
-	fmt.Printf("ptr with %%#v: %#v\n", ptr)
-	//
+	// - To solidify understanding of & and *, try this experiment:
+	/*
+		val := FileProcessor{inputDir: "test", outputDir: "test", maxFiles: 1}
+		ptr := &val
+
+		fmt.Printf("\nval with %%#v: %#v\n", val)
+		fmt.Printf("ptr with %%#v: %#v\n", ptr)
+	*/
 	// Questions to answer:
 	// 1. What does val show with %#v? (no & or * in the output)
+	//   - It shows the actual Go syntax that was used to create "val"
 	// 2. What does ptr show with %#v? (should show & in the output)
+	//   - It shows how a pointer would be created with that code (we add &)
 	// 3. Why does one show & and the other doesn't?
+	//   - One shows & because it's a pointer. The other doesn't because it's
+	//     only a value.
 	// 4. How does this connect to the %T output you saw earlier?
+	//   - %T was showing the type, which in my case earlier was of f, where
+	//     f was (and still is) `f := &FileProcessor{...}`. So it makes sense
+	//     that it would print *main.FileProcessor, because & creates a pointer.
+	//
 	// ============================================================================
 	// END GOING DEEPER
 	// ============================================================================

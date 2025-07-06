@@ -39,11 +39,11 @@ func NewService(name string, reportGen *ReportGenerator) *Service {
 
 func (s *Service) ProcessData() error {
 	// Try using s.reportGen:
-	// s.reportGen.Generate("data-analysis")
+	s.reportGen.Generate("data-analysis")
 
 	// Try creating a local ReportGenerator
-	r := NewReportGenerator("over_there")
-	r.Generate("data-analysis")
+	// r := NewReportGenerator("over_there")
+	// r.Generate("data-analysis")
 	return nil
 }
 
@@ -51,10 +51,8 @@ func main() {
 	// Approach 1:
 	// /*
 		r := NewReportGenerator("right_here")
-		// r.Generate("data-analysis")
 		s := NewService("spencer-service", r)
 		s.ProcessData()
-		// fmt.Printf("The Service is: %v", s)
 	// */
 
 	// Approach 2:

@@ -42,11 +42,12 @@ func (cs *CloudStorage) Load(filename string) ([]byte, error) {
 }
 
 func NewStorage(storageType StorageType, config string) (Storage, error) {
-	if storageType == StorageType_Local {
+	switch storageType {
+	case StorageType_Local:
 		return &LocalStorage{basePath: config}, nil
-	} else if storageType == StorageType_Cloud {
+	case StorageType_Cloud:
 		return &CloudStorage{region: config}, nil
-	} else {
+	default:
 		return nil, fmt.Errorf("unkown type %v", storageType)
 	}
 }

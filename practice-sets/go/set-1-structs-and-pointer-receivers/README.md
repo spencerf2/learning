@@ -5,7 +5,8 @@ Create a new directory: go-learning/structs-and-methods/ and work through these 
 ## Problem 1: Basic Struct Methods
 
 **Goal**: Understand the difference between methods and functions
-```
+
+```go
 // Create a simple Counter struct
 type Counter struct {
     value int
@@ -22,10 +23,9 @@ func main() {
     c.SetValue(10)
     fmt.Println(c.GetValue()) // Should print 10
 }
-
 ```
 
-### Questions to answer:
+### Questions to answer
 
 - What's the difference between func (c Counter) GetValue() and func GetValue(c Counter)?
 - Why do we use methods instead of just functions?
@@ -33,7 +33,8 @@ func main() {
 ## Problem 2: Pointer vs Value Receivers
 
 **Goal**: Understand why *Counter vs Counter matters
-```
+
+```go
 type Counter struct {
     value int
 }
@@ -60,7 +61,7 @@ func main() {
 
 ```
 
-### Questions to answer:
+### Questions to answer
 
 - Why does IncrementValue() not change the counter?
 - Why does IncrementPointer() change the counter?
@@ -69,6 +70,7 @@ func main() {
 ## Problem 3: Constructor Pattern (Like Your Work Code)
 
 **Goal**: Understand the NewSomething() pattern you see everywhere
+
 ```
 type FileProcessor struct {
     inputDir  string
@@ -89,7 +91,7 @@ func main() {
 
 ```
 
-### Questions to answer:
+### Questions to answer
 
 - Why do constructors usually return *FileProcessor instead of FileProcessor?
 - How is this similar to your work's NewDebugReportGenerator()?
@@ -97,7 +99,8 @@ func main() {
 ## Problem 4: Mirror Your Work Confusion
 
 **Goal**: Recreate the exact pattern that confused you
-```
+
+```go
 type ReportGenerator struct {
     outputPath string
 }
@@ -128,10 +131,9 @@ func (s *Service) ProcessData() error {
     // Call Generate("data-analysis") on it
     return nil
 }
-
 ```
 
-### Questions to answer:
+### Questions to answer
 
 - Which approach feels more like your existing codebase patterns?
 - What are the pros/cons of each approach?

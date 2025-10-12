@@ -106,8 +106,8 @@ func (l *Logger) Write(id string, data []byte) error {
 	return nil
 }
 
-func LoadUserProfile(rw ReadWriter, userID string) ([]byte, error) {
-	return rw.Read(fmt.Sprintf("profile_%s", userID))
+func LoadUserProfile(r Reader, userID string) ([]byte, error) {
+	return r.Read(fmt.Sprintf("profile_%s", userID))
 }
 
 func UpdateUserProfile(rw ReadWriter, userID string, newData []byte) error {

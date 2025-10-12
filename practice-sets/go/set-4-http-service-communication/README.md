@@ -63,7 +63,6 @@ func main() {
     // TODO: Test CreateUser with a new user
     // Handle and print any errors with full context
 }
-
 ```
 
 ### Questions to answer

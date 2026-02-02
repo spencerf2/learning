@@ -1,5 +1,7 @@
 # Chapter 2: From Model to Production - Questionnaire
 
+<https://github.com/fastai/fastbook/blob/master/02_production.ipynb>
+
 Questions from the fastai book, Chapter 2.
 
 ## Questions
